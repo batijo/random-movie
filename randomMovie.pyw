@@ -36,8 +36,8 @@ class Window(Frame):
         driver = webdriver.Firefox(executable_path='geckodriver.exe')
         driver.get("https://www.linkomanija.net/")
 
-        USER = os.getenv('USER')
-        PASS = os.getenv('PASS')
+        USER = os.getenv('M_USERNAME')
+        PASS = os.getenv('M_PASSWORD')
 
         driver.find_element_by_xpath('//*[@id="username"]').send_keys(USER)
         driver.find_element_by_xpath('//*[@id="password"]').send_keys(PASS)
