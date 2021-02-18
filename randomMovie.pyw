@@ -1,17 +1,17 @@
 import random
 import os
-from tkinter import *
+import tkinter
 from tkinter import messagebox
 from selenium import webdriver
 from time import sleep
 from dotenv import load_dotenv
 
-class Window(Frame):
+class Window(tkinter.Frame):
 
     def __init__(self,master):
-        Frame.__init__(self, master)
+        tkinter.Frame.__init__(self, master)
         self.master=master
-        self.pack(fill=BOTH, expand=1)
+        self.pack(fill=tkinter.BOTH, expand=1)
         
         self.pickMovie()
 
@@ -25,10 +25,10 @@ class Window(Frame):
         self.isItOkMovie(movie)
 
     def isItOkMovie(self, movie):
-        self.movieText = Label(self.master, text=movie)
+        self.movieText = tkinter.Label(self.master, text=movie)
         self.movieText.place(x=70, y=70)
-        self.okButton = Button(self.master, text="Lets watch!", command= lambda: self.openDownloadSite(movie))
-        self.againButton = Button(self.master, text="Spin again", command=self.removeWigets)
+        self.okButton = tkinter.Button(self.master, text="Lets watch!", command= lambda: self.openDownloadSite(movie))
+        self.againButton = tkinter.Button(self.master, text="Spin again", command=self.removeWigets)
         self.okButton.pack()
         self.againButton.pack()
 
@@ -49,7 +49,7 @@ class Window(Frame):
         self.askToRemove(movie)
     
     def askToRemove(self, movie):
-        msgbox = messagebox.askquestion('Remove Movie', 'Do you want to remove movie from list: ' + movie)
+        msgbox = messagebox.askquestion('Remove Movie', 'Do you want to remove \"{}\" from the list?'.format(movie))
         if msgbox == 'yes':
             self.removeMovieFromFile(movie)
 
@@ -71,7 +71,7 @@ class Window(Frame):
 
 def main():
     load_dotenv()
-    root=Tk()
+    root=tkinter.Tk()
     Window(root)
     root.wm_title("Movie Picker")
     root.geometry("500x200")
